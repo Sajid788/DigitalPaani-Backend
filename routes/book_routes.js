@@ -7,12 +7,14 @@ const {
     updateBook,
     deletedBook
 } = require('../controller/book_controller');
+const authorization = require('../middleware/authorization')
+
 
 // Define routes
 bookRouter.get('/', getBooks);
-bookRouter.get('/:id', getBookById);
-bookRouter.post('/', createBook);
-bookRouter.patch('/:id', updateBook);
-bookRouter.delete('/:id', deletedBook);
+bookRouter.get('/:id',authorization, getBookById);
+bookRouter.post('/', authorization, createBook);
+bookRouter.patch('/:id',authorization, updateBook);
+bookRouter.delete('/:id',authorization, deletedBook);
 
 module.exports = {bookRouter};

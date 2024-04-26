@@ -49,6 +49,7 @@ const createBook = async (req, res) => {
       title: title,
       author: author,
       publicationYear: publicationYear,
+      createrId: req.userId,
     });
 
     res.status(201).json({ msg: "Book created successfully", data: book });
@@ -91,15 +92,18 @@ const updateBook = async (req, res) => {
 
 // delete book
 const deletedBook = async (req, res) => {
+  const { id } = req.params;
+  const createrId = req.userId;
+
   try {
-    const deletedBook = await BookModel.findByIdAndDelete(req.params.id);
-    if (!deletedBook) {
-      return res.status(404).json({ message: "Book not found" });
+    const book = await BookModel.findOneAndDelete({ _id: id, createrId });
+    if (!book) {
+      return res.status(404).send({ msg: "Book not found or unauthorized!" });
     }
-    res.json({ message: "Book deleted successfully" });
+    res.status(200).send({ msg: "Book deleted successfully", book });
   } catch (error) {
-    console.error("Error deleting book:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error(error);
+    res.status(500).send({ msg: "Internal server error!" });
   }
 };
 
