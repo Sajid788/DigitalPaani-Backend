@@ -43,15 +43,15 @@ DigitalPaani Backend is a Node.js application serving as the backend for the Dig
 
 #### Book Management
 
-- `POST/books`: Create a new book entry. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
-- `GET /books`: Get all book entries.
-- `GET /books/:id`: Get a single book entry by ID.
-- `PATCH /books/:id`: Update a book entry by ID. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
-- `DELETE /books/:id`: Delete a book entry by ID.
+- `POST/book`: Create a new book entry. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
+- `GET /book`: Get all book entries.
+- `GET /book/:id`: Get a single book entry by ID.
+- `PATCH /book/:id`: Update a book entry by ID. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
+- `DELETE /book/:id`: Delete a book entry by ID.
 
-- `Filter url/books?author= author name here` : Get a list of books with filtering by author
-- `Filter By publicationYear url/books?year=2020` : Get a list of books with Filtering books by publication year.
-- `Pagination url/books?page=1&limit=10` : Get a list of books by pagination using {page} & {limit} both values are dynamic.
+- `Filter url/book?author= author name here` : Get a list of books with filtering by author
+- `Filter By publicationYear url/book?year=2020` : Get a list of books with Filtering books by publication year.
+- `Pagination url/book?page=1&limit=10` : Get a list of books by pagination using {page} & {limit} both values are dynamic.
 
 #### Authorization
 
