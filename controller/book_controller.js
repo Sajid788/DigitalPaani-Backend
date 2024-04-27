@@ -1,7 +1,6 @@
 const { BookModel } = require("../model/book_model");
-
 const getBooks = async (req, res) => {
-  const { author, year } = req.query;
+  const { author, year, page = 1, limit = 10 } = req.query;
   try {
     let query = {};
 
@@ -9,18 +8,33 @@ const getBooks = async (req, res) => {
     if (author) {
       query.author = author;
     }
-    //filter bu publication year
+    // filtering by publication year
     if (year) {
       query.publicationYear = year;
     }
 
-    const books = await BookModel.find(query);
-    res.status(200).json({ message: "Get all book sucessfully!", data: books });
+    // Calculate skip value for pagination
+    const skip = (page - 1) * limit;
+    const totalCount = await BookModel.countDocuments(query);
+    const books = await BookModel.find(query)
+      .skip(skip) 
+      .limit(parseInt(limit)); 
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.status(200).json({
+      message: "Get all books successfully!",
+      data: books,
+      totalCount,
+      totalPages,
+      currentPage: parseInt(page)
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
 
 // Get a single book by ID
 const getBookById = async (req, res) => {
