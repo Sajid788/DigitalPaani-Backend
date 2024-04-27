@@ -43,9 +43,9 @@ DigitalPaani Backend is a Node.js application serving as the backend for the Dig
 
 #### Book Management
 
-- `POST/book`: Create a new book entry. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
 - `GET /book`: Get all book entries.
 - `GET /book/:id`: Get a single book entry by ID.
+- `POST/book`: Create a new book entry. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
 - `PATCH /book/:id`: Update a book entry by ID. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
 - `DELETE /book/:id`: Delete a book entry by ID.
 
