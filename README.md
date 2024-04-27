@@ -49,7 +49,7 @@ DigitalPaani Backend is a Node.js application serving as the backend for the Dig
 - `PATCH /book/:id`: Update a book entry by ID. Requires a JSON body with `title`, `author`, and `publicationYear` fields.
 - `DELETE /book/:id`: Delete a book entry by ID.
 
-- `Filter url/book?author= author name here` : Get a list of books with filtering by author
+- `Filter url/book?author=author name here` : Get a list of books with filtering by author
 - `Filter By publicationYear url/book?year=2020` : Get a list of books with Filtering books by publication year.
 - `Pagination url/book?page=1&limit=10` : Get a list of books by pagination using {page} & {limit} both values are dynamic.
 
